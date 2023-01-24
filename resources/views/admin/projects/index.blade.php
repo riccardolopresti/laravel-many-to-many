@@ -89,13 +89,9 @@
                                         {{$project->type?->name}}
                                     </span>
                                 </td>
-                                <td>
-                                    @forelse ($project->tags as $tag )
-                                    <span class="badge text-bg-light">{{$tag->name}}</span>
-                                    @empty
-                                        nd
-                                    @endforelse
-                                </td>
+
+
+
                                 <td>{{$project->client_name}}</td>
                                 <td>
                                     <a class="btn btn btn-outline-info" href="{{route('admin.projects.show', $project->slug)}}" role="button"><i class="fa-solid fa-eye"></i></a>

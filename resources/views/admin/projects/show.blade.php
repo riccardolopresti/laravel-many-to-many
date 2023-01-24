@@ -42,18 +42,6 @@
                         </span>
                     </div>
 
-                    @if ($project->tags)
-                        <div class="tag-entity mb-2">
-                            @foreach ( $project->tags as $tag)
-                                <span class="badge text-bg-light">
-                                    {{$tag->name}}
-                                </span>
-                            @endforeach
-
-                        </div>
-                    @endif
-
-
                     <h6 class="card-title">{{$project->client_name}}</h6>
                     <p class="card-text">{!!$project->summary!!}</p>
 
