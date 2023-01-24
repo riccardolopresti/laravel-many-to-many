@@ -33,7 +33,7 @@ Route::middleware(['auth', 'verified'])
         Route::get('/projects/{slug}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
         Route::get('/projects/{column}/{direction}', [ProjectController::class, 'orderby'])->name('projects.orderby');
         Route::resource('types', TypeController::class)->except(['show','create','edit']);
-        Route::resource('types', TechnologyController::class)->except(['show','create','edit']);
+        Route::resource('technologies', TechnologyController::class)->except(['show','create','edit']);
     });
 
 require __DIR__.'/auth.php';

@@ -53,6 +53,19 @@
             </a>
         </li>
         <li class="list-group-item">
+            <a href="{{route('admin.technologies.index')}}">
+                <div class="wrapper-link d-flex">
+                    <div class="ico d-flex align-items-center">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <div class="testo px-2">
+                        <span>Tecnologie</span>
+                    </div>
+                </div>
+
+            </a>
+        </li>
+        <li class="list-group-item">
             <a target="_blank" href="https://github.com/RiccardoLoPresti">
                 <div class="wrapper-link d-flex">
                     <div class="ico d-flex align-items-center">
