@@ -118,8 +118,10 @@ class ProjectController extends Controller
         $project = Project::where('slug',$slug)->first();
 
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin.projects.edit', compact('project', 'types'));
+
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -149,6 +151,11 @@ class ProjectController extends Controller
             $form_data['image_original_name'] = $request->file('cover_image')->getClientOriginalName();
 
             $form_data['cover_image'] = Storage::put('uploads',$form_data['cover_image']);
+        }
+
+        if(array_key_exists('technologies', $form_data)){
+
+            $project->technologies()->sync($form_data['technologies']);
         }
 
         $project->update($form_data);

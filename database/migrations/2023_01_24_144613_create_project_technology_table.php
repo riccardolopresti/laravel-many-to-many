@@ -17,12 +17,14 @@ return new class extends Migration
             //relazione con projects
             $table->unsignedBigInteger('project_id');
             $table->foreign('project_id')
+                ->references('id')
                 ->on('projects')
                 ->cascadeOnDelete();
 
             //relazione con tech
             $table->unsignedBigInteger('technology_id');
             $table->foreign('technology_id')
+                ->references('id')
                 ->on('technologies')
                 ->cascadeOnDelete();
         });

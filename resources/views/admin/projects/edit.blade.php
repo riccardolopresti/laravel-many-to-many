@@ -9,6 +9,16 @@
 <div class="container">
     <div class="row justify-content-center px-5 py-3">
 
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <h1 class="text-uppercase text-black-50">Modifica il progetto {{$project->name}}</h1>
 
         <div class="col">
@@ -25,6 +35,23 @@
                     <div class="mb-3">
                         <label for="client_name" class="form-label">Nome del cliente*</label>
                         <input type="text" class="form-control" id="client_name" value="{{$project->client_name}}" name="client_name" placeholder="Nome del cliente">
+                    </div>
+
+                    <div class="mb-3">
+                        <p for="technologies" class="form-label">Tecnologie utilizzate</p>
+
+                        @foreach ($technologies as $technology)
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" name="technologies[]" type="checkbox" id="{{$technology->id}}" value="{{$technology->id}}"
+                                @if (!$errors->all() && $project->technologies->contains($technology))
+                                    checked
+                                @elseif ($errors->all() && in_array($technology->id, old('technologies', [])))
+                                    checked
+                                @endif>
+                                <label class="form-check-label" for="{{$technology->id}}">{{$technology->name}}</label>
+                            </div>
+                        @endforeach
+
                     </div>
 
                     <div class="mb-3">
