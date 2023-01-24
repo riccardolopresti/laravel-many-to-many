@@ -42,6 +42,14 @@
                         </span>
                     </div>
 
+                    <div class="tech-entity my-1 mb-2">
+                        @if ($project->technologies)
+                            @foreach ( $project->technologies as $technology )
+                                <span class="badge text-bg-light">{{$technology->name}}</span>
+                            @endforeach
+                        @endif
+                    </div>
+
                     <h6 class="card-title">{{$project->client_name}}</h6>
                     <p class="card-text">{!!$project->summary!!}</p>
 
