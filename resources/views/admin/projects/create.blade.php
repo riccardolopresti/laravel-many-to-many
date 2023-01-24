@@ -49,6 +49,18 @@
                     </div>
 
                     <div class="mb-3">
+                        <p for="technologies" class="form-label">Tecnologie utilizzate</p>
+
+                        @foreach ($technologies as $technology)
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" name="technologies[]" type="checkbox" id="{{$technology->id}}" value="{{$technology->id}}">
+                                <label class="form-check-label" for="{{$technology->id}}">{{$technology->name}}</label>
+                            </div>
+                        @endforeach
+
+                    </div>
+
+                    <div class="mb-3">
                         <label for="client_name" class="form-label">Tipo di progetto</label>
                         <select class="form-select" name="type_id">
                             <option value="">Seleziona un tipo...</option>

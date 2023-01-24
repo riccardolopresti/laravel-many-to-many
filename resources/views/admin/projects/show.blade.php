@@ -30,25 +30,28 @@
                         @include('admin.partials.delete-form')
                     </div>
 
-                    <div class="type-entity my-1">
-                        <span class="badge rounded-pill  @if ($project->type?->name == 'Front-end')
-                            text-bg-success
-                        @elseif($project->type?->name == 'Back-end')
-                            text-bg-dark
-                        @else
-                            text-bg-primary
-                        @endif">
-                            {{$project->type?->name}}
-                        </span>
-                    </div>
+                    @if ($project->type)
+                        <div class="type-entity my-1">
+                            <span class="badge rounded-pill  @if ($project->type?->name == 'Front-end')
+                                text-bg-success
+                            @elseif($project->type?->name == 'Back-end')
+                                text-bg-dark
+                            @else
+                                text-bg-primary
+                            @endif">
+                                {{$project->type?->name}}
+                            </span>
+                        </div>
+                    @endif
 
-                    <div class="tech-entity my-1 mb-2">
-                        @if ($project->technologies)
+
+                    @if ($project->technologies)
+                        <div class="tech-entity my-1 mb-2">
                             @foreach ( $project->technologies as $technology )
                                 <span class="badge text-bg-light">{{$technology->name}}</span>
                             @endforeach
-                        @endif
-                    </div>
+                        </div>
+                    @endif
 
                     <h6 class="card-title">{{$project->client_name}}</h6>
                     <p class="card-text">{!!$project->summary!!}</p>
