@@ -55,7 +55,7 @@
                             </a>
                         </th>
                         <th scope="col">
-                            Tag
+                            Tecnologie
                         </th>
                         <th scope="col">
                             <a href="{{route('admin.projects.orderby', ['client_name', $direction])}}">
@@ -90,7 +90,13 @@
                                     </span>
                                 </td>
 
-
+                                <td>
+                                    @forelse ($project->technologies as $technology )
+                                        <span class="badge text-bg-light">{{$technology->name}}</span>
+                                    @empty
+                                        -
+                                    @endforelse
+                                </td>
 
                                 <td>{{$project->client_name}}</td>
                                 <td>
