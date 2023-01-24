@@ -49,7 +49,7 @@ class TypeController extends Controller
 
         Type::create($form_data);
 
-        return redirect()->back()->with('message', "Categoria $request->name creata correttamente");
+        return redirect()->back()->with('message', "Tipo $request->name creata correttamente");
     }
 
     /**

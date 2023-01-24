@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Technology;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TechnologyController extends Controller
 {
@@ -14,7 +16,8 @@ class TechnologyController extends Controller
      */
     public function index()
     {
-        //
+        $technologies = Technology::all();
+        return view('admin.technologies.index',compact('technologies'));
     }
 
     /**
@@ -35,7 +38,17 @@ class TechnologyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form_data = $request->validate(
+            [
+                'name' => 'required|unique:technologies'
+            ]
+        );
+
+        $form_data['slug'] = Str::slug($form_data['name']);
+
+        Technology::create($form_data);
+
+        return redirect()->back()->with('message', "Tecnologia $request->name creata correttamente");
     }
 
     /**
@@ -67,9 +80,19 @@ class TechnologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Technology $technology)
     {
-        //
+        $form_data = $request->validate(
+            [
+                'name' => 'required|unique:technologies'
+            ]
+        );
+
+        $form_data['slug'] = Str::slug($form_data['name']);
+
+        $technology->update($form_data);
+
+        return redirect()->back()->with('msg', "Tecnologia <strong>$request->name</strong> aggiornato correttamente");
     }
 
     /**
@@ -78,8 +101,10 @@ class TechnologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Technology $technology)
     {
-        //
+        $technology->delete();
+
+        return redirect()->back()->with('msg', "Tipo <strong>$technology->name</strong> eliminato correttamente");
     }
 }
