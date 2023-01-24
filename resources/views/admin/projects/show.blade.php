@@ -18,7 +18,7 @@
 
             <div class="card" style="max-width: 800px">
                 @if ($project->cover_image)
-                    <img src="{{asset('storage/' . $project->cover_image)}}" class="card-img-top" alt="{{asset('storage/' . $project->image_original_name)}}">
+                    <img src="{{asset('storage/' . $project->cover_image)}}" class="card-img-top" alt="{{$project->image_original_name}}">
                 @endif
 
                 <div class="card-body">

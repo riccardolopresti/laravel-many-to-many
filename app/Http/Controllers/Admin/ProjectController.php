@@ -135,6 +135,8 @@ class ProjectController extends Controller
     {
         $form_data= $request->all();
 
+        //dd($form_data);
+
         if($form_data['name'] != $project['name']){
             $form_data['slug'] = Project::SlugGenerator($form_data['name']);
         }else{
@@ -156,6 +158,8 @@ class ProjectController extends Controller
         if(array_key_exists('technologies', $form_data)){
 
             $project->technologies()->sync($form_data['technologies']);
+        }else{
+            $project->technologies()->detach();
         }
 
         $project->update($form_data);
@@ -172,6 +176,10 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
+
+        if($project->cover_image){
+            Storage::disk('public')->delete($project->cover_image);
+        }
 
         return redirect()->route('admin.projects.index')->with('delete',"L'elemento <strong>$project->name</strong> è stato eliminato correttamente");
     }
